@@ -1,0 +1,64 @@
+<%- include('partials/_header'); %>
+
+<pre><%= data[0]%></pre>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>N#</th>
+                        <th>Placa</th>
+                        <th>Tipo de vihiculo</th>
+                        <th>Telefono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <% if (data) { %>
+                            <% for (var i = 0; i < data.length; i++) { %>
+                                <tr>
+                                    <td><%= (i + 1)%> </td>
+                                    <td><%= data[i].placa %> </td>
+                                    <td><%= data[i].tipovehiculo %> </td>
+                                    <td><%= data[i].telefono %> </td>
+                                    <td>
+                                        <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Borrar</a>
+                                        <a href="/update/<%= data[i].id %>" class="btn btn-info">Editar</a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                <% } %>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <form action = "/add" method = "post">
+                <div class ="form-group">
+                        <input type="text" name="placa" placeholder="Placa" class="form-control">
+                </div>
+                <div class ="form-group">
+                    <select id="combobox" name="tipovehiculo" class="form-control">
+                        <option value="" disabled selected>Selecciona un vehiculo...</option>
+                        <option value="Carro">Carro</option>
+                        <option value="Moto">Moto</option>
+                        
+                      </select>
+                </div>
+                <div class ="form-group">
+                    <input type="text" name="telefono" placeholder="Telefono" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Guardar Vehiculo
+                </button>
+                </form>
+        </div>
+    </div>
+</div>
+
+
+
+<%- include('partials/_footer'); %>
+
+
